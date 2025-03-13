@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ancient Human Dispersal</title>
+    <link rel="stylesheet" href="./src/styles.css">
+	
+    <style>
+        body {
+            margin: 0;
+			overflow: hidden;
+			font-family: Arial, sans-serif;
+        }
+		#title {
+		 position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+        .popup {
+            display: none; /* Hidden by default */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 30px;
+            width: 400px;
+            max-width: 90%;
+            color: white;
+            border-radius: 10px;
+            z-index: 1000;
+            box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.3);
+        }
+        .popup-content {
+            text-align: center;
+        }
+        .popup img {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .hotspot {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+    </style>
+    <script type="module" crossorigin src="./assets/index-cLDO0vcS.js"></script>
+  </head>
+  <body>
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span id="closePopup" class="close">&times;</span>
+            <h2 id="popupTitle"></h2>
+			<a id="popupLink" href="" target="_blank" style="color:blue; text-decoration:underline; display:none;">View More</a>			
+			<p id="popupDescription"></p>
+        </div>
+    </div>
+    <div id="title">Ancient Human Dispersal</div>
+    <a href="./info/glossary.pdf" target="_blank" style="position: fixed; bottom: 20px; right: 20px; background: rgba(0, 0, 0, 0.6);; color: #007BFF; text-decoration: underline; background: rgba(0, 0, 0, 0.5); padding: 5px 10px; border-radius: 5px;">
+    Glossary (PDF)
+	</a>
+	 <a href="./info/bibliography.pdf" target="_blank" style="position: fixed; bottom: 20px; left: 20px; background: rgba(0, 0, 0, 0.6);; color: #007BFF; text-decoration: underline; background: rgba(0, 0, 0, 0.5); padding: 5px 10px; border-radius: 5px;">
+    Bibliography (PDF)
+	</a>
+	<script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelectorAll(".hotspot").forEach(hotspot => {
+                hotspot.addEventListener("click", function() {
+                    this.style.backgroundColor = "green";
+                    
+                    let title = this.getAttribute("data-title");
+                    let description = this.getAttribute("data-description");
+                    let imageUrl = this.getAttribute("data-image");
+                    
+                    document.getElementById("popupTitle").innerText = title;
+                    document.getElementById("popupDescription").innerText = description;
+                    document.getElementById("popupImage").src = imageUrl;
+                    
+                    document.getElementById("popup").style.display = "block";
+                });
+            });
+        });
+
+        document.getElementById("closePopup").addEventListener("click", function() {
+            document.getElementById("popup").style.display = "none";
+        });
+    </script>
+    
+  </body>
+</html>
